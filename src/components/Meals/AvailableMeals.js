@@ -34,6 +34,7 @@ const AvailableMeals = () => {
   // Can simply map our DUMMY_MEALS in the return statement, but storing it in a helper var like this produces leaner JSX code
   const mealsList = DUMMY_MEALS.map((meal) => (
     <MealItem
+      id={meal.id}
       key={meal.id}
       name={meal.name}
       description={meal.description}
