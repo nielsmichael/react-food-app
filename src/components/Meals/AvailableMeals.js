@@ -1,3 +1,4 @@
+import Card from "../UI/Card";
 import classes from "./AvailableMeals.module.css";
 
 const DUMMY_MEALS = [
@@ -30,11 +31,13 @@ const DUMMY_MEALS = [
 
 const AvailableMeals = () => {
   // Can simply map our DUMMY_MEALS in the return statement, but storing it in a helper var like this produces leaner JSX code
-  const mealsList = DUMMY_MEALS.map((meal) => <li></li>);
+  const mealsList = DUMMY_MEALS.map((meal) => <li>{meal.name}</li>);
 
   return (
     <section className={classes.meals}>
-      <ul>{mealsList}</ul>
+      <Card>
+        <ul>{mealsList}</ul>
+      </Card>
     </section>
   );
 };
