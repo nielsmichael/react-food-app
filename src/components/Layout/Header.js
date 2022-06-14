@@ -4,7 +4,7 @@ import mealsImg from "../../assets/meals.jpeg";
 import classes from "./Header.module.css";
 import HeaderCartBtn from "./HeaderCartBtn";
 
-const Header = (props) => {
+const Header = () => {
   return (
     <>
       <header className={classes.header}>
