@@ -39,6 +39,36 @@ const cartReducer = (state, action) => {
     };
   }
 
+  // check if item type is for removal
+  if (action.type === "REMOVE_CART_ITEM") {
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingCartItem = state.items[existingCartItemIndex];
+    const updatedTotalAmt = state.totalAmount - existingCartItem.price;
+    let updatedItems;
+
+    // check if item to be removed is last item
+    if (existingCartItem.amount === 1) {
+      // whole item to be removed
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+    } else {
+      // keep item in cart if item is more than one, but reduce amount
+      const updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount - 1,
+      };
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+
+    // return new state object
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmt,
+    };
+  }
+
   return defaultCartState;
 };
 
