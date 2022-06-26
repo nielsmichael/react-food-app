@@ -19,7 +19,7 @@ const cartReducer = (state, action) => {
     // return updated values
     return {
       items: updatedItems,
-      totalAmount: updatedItems,
+      totalAmount: updatedTotalAmt,
     };
   }
 
