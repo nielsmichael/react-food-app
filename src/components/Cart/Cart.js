@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
+import CartItem from "./CartItem";
 
 const Cart = (props) => {
   // Declare context
@@ -12,12 +13,26 @@ const Cart = (props) => {
   // hasItems to check if items are in the cart
   const hasItems = cartCtx.items.length > 0;
 
+  // Handler functions
+  // on add handler
+  const cartItemAddHandler = () => {};
+
+  // on remove handler
+  const cartItemRmvHandler = () => {};
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {
         // Pass cart items via context to ul list to be mapped
         cartCtx.items.map((item) => (
-          <li>{item.name}</li>
+          <CartItem
+            key={item.id}
+            name={item.name}
+            amount={item.amount}
+            price={item.price}
+            onRemove={cartItemRmvHandler.bind(null, item.id)}
+            onAdd={cartItemAddHandler.bind(null, item.item)}
+          />
         ))
       }
     </ul>
@@ -28,7 +43,6 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total:</span>
-        {/* Hardcode for now */}
         <span>{totalAmt}</span>
       </div>
       <div className={classes.actions}>
